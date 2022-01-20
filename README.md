@@ -18,4 +18,4 @@ Obvod mám zapojený v nepájivém poli a skládá se ze:
 a spousta drátků.
 Obvod je napájen +5V přes mikro USB z PC.
 
-![Jednoduché blokové schéma]( 1-projekt-zimni-TurboMaster69/schema proj1.png )
+![Jednoduché blokové schéma]( schema proj1.png )
