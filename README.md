@@ -1,14 +1,21 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-f059dc9a6f8d3a56e377f745f24479a46679e63a5d9fe6f495e02850cd0d8118.svg)](https://classroom.github.com/online_ide?assignment_repo_id=6752930&assignment_repo_type=AssignmentRepo)
-Start STM8
-====================
+Projekt MIT zimni
 
-Startovací strom zdrojových kódů pro výuku mikroprocesorové techniky s kitem
-[NUCLEO-8S208RB](https://www.st.com/en/evaluation-tools/nucleo-8s208rb.html).
+Funkce projektu:
+Projekt funguje jako klasické minutky, tedy odpočítává nastavený čas a poté vydá určitou signalizaci.
+Enkodérem se nastaví (otáčení doprava = + ,doleva = -)  požadovaný čas minutek (až 99 minut a 99 sekund) a stiskem se to potvrdí.) 
+Tím se přepnou minutky do odpočítávajícího režimu a začnou po sekundách odpočítávat daný čas.
+Jakmile čas doběhne na nulu, rozezní se repráček (pípá) a začne blikat ledka, dokud se zase nestiskne tlačítko.
+Mezi tím je čas neustále zobrazován na displeji.
 
-Strom je určen pro překladač [SDCC](http://sdcc.sourceforge.net/). Standardní
-knihovnu pro práci s periferiemi 
-[SPL](https://www.st.com/content/st_com/en/products/embedded-software/mcu-mpu-embedded-software/stm8-embedded-software/stsw-stm8069.html)
-je třeba (z licenčních důvodů) stáhnou zvlášť ze stránek výrobce a použít
-[patch](https://github.com/gicking/STM8-SPL_SDCC_patch).
+Obvod mám zapojený v nepájivém poli a skládá se ze: 
+1x STM8 kit; 
+1x LCD displej (QAPASS 1602A); 
+1x Rotační enkodér (HW-040);
+1x Potenciometr (5k-50k); 
+1x Červená LED dioda; 
+2x Rezistor (k55); 
+1x Piezoelektrický reproduktor (murata 01u) 
+a spousta drátků.
+Obvod je napájen +5V přes mikro USB z PC.
 
-
+![Jednoduché blokové schéma]( 1-projekt-zimni-TurboMaster69/schema proj1.png )
