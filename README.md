@@ -7,6 +7,8 @@ Tím se přepnou minutky do odpočítávajícího režimu a začnou po sekundác
 Jakmile čas doběhne na nulu, rozezní se repráček (pípá) a začne blikat ledka, dokud se zase nestiskne tlačítko.
 Mezi tím je čas neustále zobrazován na displeji.
 
+Tento projekt je také původně psán v prostředí STVD, takže vůbec nevím, jestli jsem při nahravání na Git přes VSCode nahrál vše správně.
+
 Obvod mám zapojený v nepájivém poli a skládá se ze: 
 1x STM8 kit; 
 1x LCD displej (QAPASS 1602A); 
