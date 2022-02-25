@@ -1,12 +1,10 @@
 /*
 Projekt 1 - Minutky
 */
-
 #include "stm8s.h"
 #include "milis.h"
 #include "stdio.h"
 #include "stm8_hd44780.h"
-#include "spse_stm8.c"
 
 void init_timer(void);    // inicializace všech funkcí a promněnných
 void pocty (void);
@@ -22,6 +20,7 @@ void display (void);
 
 uint16_t time, cas, doba, trvani;
 int16_t sekundy=0;
+uint8_t y=0;
 volatile int16_t minuty=0,vteriny=0, led=0, alarm=0, odpocet=0;
 char text[24];
 
@@ -47,20 +46,11 @@ display();
 
 
 void display (void){  // výpis textu na displej
-pocty();
-sprintf(text,"%5u"/*,minuty*/,sekundy); 
+sprintf(text,"Cas = %5u",sekundy); 
 lcd_gotoxy(0,0); 
 lcd_puts(text);
 }
 
-void pocty (void){  //převádění času na minuty a sekundy
-vteriny=sekundy;
-minuty=0;
-if (vteriny>=60){
-	minuty++;
-	vteriny=vteriny-60;
-	}
-}
 
 void nastav_cas1 (void){  //změna velikosti přidávaného času
 if (sekundy>=180){
@@ -93,7 +83,6 @@ void sound_generator (void){  //generování obdel. signálu pro zvukovou signal
 }
 
 void mod (void){  //zde se pomocí tlačítka na enkodéru mění "módy" = nastavování času a odpočítávání(minutky)
-static uint8_t y=0;
 if(GPIO_ReadInputPin(GPIOE, GPIO_PIN_4) == RESET && y==0){
 	 y=1;
 	 odpocet=1;
@@ -117,19 +106,6 @@ if (led==1){	//světelná signalizace po skončení odpočítávání
 	}
 
 if (odpocet==1 && sekundy>0){ //odpočítávání nastaveního času po sekundách
-/*static uint16_t korekce=0;
-	if (cas > 1000){
-		korekce=cas-1000;
-		if ((doba - cas) >= (1000-korekce)){
-			cas = milis();
-			sekundy--;
-			//display();
-		}
-	} else if (doba - cas >= 1000){
-		cas = milis();
-		sekundy--;
-		//display();
-	} */
 	if(doba - cas >= 1000){
 		cas = milis();
 		sekundy--;
@@ -166,7 +142,7 @@ void process_enc(void){ // nastavování času pomocí enkodéru
 	}
 }
 
-void init_enc(void){ 
+void init_enc(void){ //inicializace enkodéru
 GPIO_Init(GPIOF,GPIO_PIN_7,GPIO_MODE_IN_PU_NO_IT); 
 GPIO_Init(GPIOF,GPIO_PIN_6,GPIO_MODE_IN_PU_NO_IT);
 }
@@ -184,7 +160,7 @@ TIM2_OC1Init(TIM2_OCMODE_TOGGLE,TIM2_OUTPUTSTATE_ENABLE,1,TIM2_OCPOLARITY_LOW);
 TIM2_ARRPreloadConfig(ENABLE);
 }
 
-
+ 
 #ifdef USE_FULL_ASSERT
 
 /**
